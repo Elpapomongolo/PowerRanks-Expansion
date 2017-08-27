@@ -7,6 +7,7 @@ import me.winspeednl.PowerRanks.Main;
 import java.io.File;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -112,13 +113,13 @@ public class PowerRanksExapansion extends PlaceholderExpansion {
 		}
 
 		// %powerranks_rank%
-		if (identifier.contains("rank")) {
-			return getPlayers().getString("players." + p);
+		if (identifier.equals("rank")) {
+			return getPlayers().getString("players." + p.getName());
 			// return plugin.getConfig().getString("placeholder1", "value doesnt exist");
 		}
 		// %powerranks_prefix%
 		if (identifier.equals("prefix")) {
-			return getRanks().getString("Groups." + getPlayers().getString("players." + p) + ".prefix");
+			return getRanks().getString("Groups." + getPlayers().getString("players." + p.getName()) + ".prefix");
 		}
 		// %powerranks_XXX%
 		/*
@@ -129,17 +130,17 @@ public class PowerRanksExapansion extends PlaceholderExpansion {
 		return null;
 	}
 
-	private YamlConfiguration getPlayers() {
+	private FileConfiguration getPlayers() {
 		// File powerRanksFolder = new File(plugin.fileLoc, "PowerRanks");
 		File playersFile = new File(plugin.fileLoc, "Players.yml");
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(playersFile);
+		FileConfiguration config = YamlConfiguration.loadConfiguration(playersFile);
 		return config;
 	}
 
-	private YamlConfiguration getRanks() {
+	private FileConfiguration getRanks() {
 		// File powerRanksFolder = new File(plugin.getDataFolder(), "PowerRanks");
 		File ranksFile = new File(plugin.fileLoc, "Ranks.yml");
-		YamlConfiguration config = YamlConfiguration.loadConfiguration(ranksFile);
+		FileConfiguration config = YamlConfiguration.loadConfiguration(ranksFile);
 		return config;
 	}
 }
