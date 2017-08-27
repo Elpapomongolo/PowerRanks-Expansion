@@ -112,7 +112,7 @@ public class PowerRanksExapansion extends PlaceholderExpansion {
 		}
 
 		// %powerranks_rank%
-		if (identifier.equals("rank")) {
+		if (identifier.contains("rank")) {
 			return getPlayers().getString("players." + p);
 			// return plugin.getConfig().getString("placeholder1", "value doesnt exist");
 		}
@@ -130,15 +130,15 @@ public class PowerRanksExapansion extends PlaceholderExpansion {
 	}
 
 	private YamlConfiguration getPlayers() {
-		File powerRanksFolder = new File(plugin.getDataFolder().getParentFile(), "PowerRanks");
-		File playersFile = new File(powerRanksFolder, "Players.yml");
+		// File powerRanksFolder = new File(plugin.fileLoc, "PowerRanks");
+		File playersFile = new File(plugin.fileLoc, "Players.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(playersFile);
 		return config;
 	}
 
 	private YamlConfiguration getRanks() {
-		File powerRanksFolder = new File(plugin.getDataFolder().getParentFile(), "PowerRanks");
-		File ranksFile = new File(powerRanksFolder, "Ranks.yml");
+		// File powerRanksFolder = new File(plugin.getDataFolder(), "PowerRanks");
+		File ranksFile = new File(plugin.fileLoc, "Ranks.yml");
 		YamlConfiguration config = YamlConfiguration.loadConfiguration(ranksFile);
 		return config;
 	}
